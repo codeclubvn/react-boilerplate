@@ -1,11 +1,34 @@
 import { useState } from 'react'
 import { wait } from '../../utils'
+import { VariantProps, tv } from 'tailwind-variants'
+
+export const buttonVariants = tv({
+    variants: {
+        size: {
+            xs: 'text-xs',
+            sm: 'text-sm',
+            base: 'text-base',
+            l: 'text-l',
+            xl: 'text-xl',
+        },
+    },
+})
 
 export interface ButtonProps
-    extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+        VariantProps<typeof buttonVariants> {
     startDecorator?: React.ReactNode
     endDecorator?: React.ReactNode
     loading?: boolean
+    color?:
+        | 'primary'
+        | 'dark'
+        | 'gray'
+        | 'white'
+        | 'green'
+        | 'red'
+        | 'alt'
+        | 'alt-dark'
 }
 
 export const Button = ({
@@ -13,6 +36,7 @@ export const Button = ({
     endDecorator,
     children,
     onClick,
+    size,
     ...props
 }: ButtonProps) => {
     const [loading, setLoading] = useState(false)
@@ -45,11 +69,15 @@ export const Button = ({
         )
     }
 
+    const className =
+        'inline-flex flex-row content-center items-center gap-2 rounded-lg bg-primary-700 px-3 py-2 align-top text-white'
+
     return (
         <button
             {...props}
             onClick={onClickHandler}
-            className="inline-flex flex-row content-center items-center gap-2 rounded-lg bg-primary-700 px-3 py-2 align-top text-xs text-white"
+            className={buttonVariants({ className, size })}
+            // className="inline-flex flex-row content-center items-center gap-2 rounded-lg bg-primary-700 px-3 py-2 align-top text-xs text-white"
         >
             {startDecorator && (
                 <span className="btn-icon">{startDecorator}</span>

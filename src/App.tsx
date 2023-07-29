@@ -3,7 +3,7 @@ import { Button } from './components/Button'
 
 function App() {
     return (
-        <div className="flex flex-col items-center space-y-4 p-2">
+        <div className="flex flex-col items-start space-y-4 p-2">
             <div>App</div>
             <ButtonContainer />
         </div>
@@ -11,6 +11,13 @@ function App() {
 }
 
 const ButtonContainer = () => {
+    const sizes: ('xs' | 'sm' | 'base' | 'l' | 'xl')[] = [
+        'xs',
+        'sm',
+        'base',
+        'l',
+        'xl',
+    ]
     const defaultOnClick = () => {
         console.log('test onclick')
     }
@@ -20,25 +27,39 @@ const ButtonContainer = () => {
     }
     const renderDefault = () => {
         return (
-            <div className="space-x-1">
-                <Button onClick={defaultOnClick}>Default</Button>
-                <Button
-                    startDecorator={<Accessibility size="10" />}
-                    onClick={defaultOnClick}
-                >
-                    Default
-                </Button>
-                <Button endDecorator={<Airplay />} onClick={defaultOnClick}>
-                    Default
-                </Button>
-                <Button
-                    startDecorator={<Accessibility />}
-                    endDecorator={<Airplay />}
-                    onClick={defaultOnClick}
-                >
-                    Default
-                </Button>
-            </div>
+            <>
+                {sizes.map((size) => {
+                    return (
+                        <div className="space-x-1">
+                            <Button size={size} onClick={defaultOnClick}>
+                                Default
+                            </Button>
+                            <Button
+                                startDecorator={<Accessibility size="10" />}
+                                size={size}
+                                onClick={defaultOnClick}
+                            >
+                                Default
+                            </Button>
+                            <Button
+                                endDecorator={<Airplay />}
+                                size={size}
+                                onClick={defaultOnClick}
+                            >
+                                Default
+                            </Button>
+                            <Button
+                                startDecorator={<Accessibility size="10" />}
+                                endDecorator={<Airplay />}
+                                size={size}
+                                onClick={defaultOnClick}
+                            >
+                                Default
+                            </Button>
+                        </div>
+                    )
+                })}
+            </>
         )
     }
 
