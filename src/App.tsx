@@ -1,12 +1,44 @@
+import { Accessibility, Airplay } from 'lucide-react'
+import { Button } from './components/Button'
+
 function App() {
-  const a = ''
   return (
     <>
       <div>App</div>
-      <p>{a}</p>
-      <input type="date" />
-      <input type="datetime-local" />
-      <input type="time" />
+      <div className="h-20 space-x-1">
+        <Button
+          onClick={() => {
+            console.log('test onclick')
+          }}
+        >
+          DEMO
+        </Button>
+        <Button
+          startDecorator={<Accessibility size="10" />}
+          onClick={() => {
+            console.log('test onclick')
+          }}
+        >
+          DEMO
+        </Button>
+        <Button
+          endDecorator={<Airplay />}
+          onClick={() => {
+            console.log('test onclick')
+          }}
+        >
+          DEMO
+        </Button>
+        <Button
+          startDecorator={<Accessibility />}
+          endDecorator={<Airplay />}
+          onClick={() => {
+            console.log('test onclick')
+          }}
+        >
+          DEMO
+        </Button>
+      </div>
     </>
   )
 }
