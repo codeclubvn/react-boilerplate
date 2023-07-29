@@ -1,4 +1,4 @@
-export const wait = (duration: number = 500) =>
+export const wait = (duration: number = 300) =>
     new Promise((resolve) => {
         setTimeout(resolve, duration)
     })
