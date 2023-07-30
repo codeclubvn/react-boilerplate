@@ -103,7 +103,7 @@ export const Button = ({
 }: ButtonProps) => {
     const [loading, setLoading] = useState(false)
     const isAsyncFunction = onClick?.constructor.name === 'AsyncFunction'
-    const disabled = disabledProp || loading
+    const disabled = disabledProp || loading || !onClick
 
     const onClickHandler = isAsyncFunction
         ? (e) => {
