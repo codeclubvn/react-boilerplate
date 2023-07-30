@@ -1,15 +1,43 @@
 import { useState } from 'react'
-import { wait } from '../../utils'
+import { cn, wait } from '../../utils'
 import { VariantProps, tv } from 'tailwind-variants'
 
+export const ButtonSizes = ['xs', 'sm', 'base', 'lg', 'xl'] as const
+type ButtonSize = (typeof ButtonSizes)[number]
+
+export const ButtonColors = [
+    'primary',
+    'dark',
+    'gray',
+    'white',
+    'green',
+    'red',
+    'alt',
+    'alt-dark',
+] as const
+type ButtonColor = (typeof ButtonColors)[number]
+
 export const buttonVariants = tv({
+    base: [
+        'inline-flex flex-row content-center items-center gap-2 rounded-lg px-3 py-2 align-top text-white',
+    ],
     variants: {
         size: {
             xs: 'text-xs',
             sm: 'text-sm',
             base: 'text-base',
-            l: 'text-l',
+            lg: 'text-lg',
             xl: 'text-xl',
+        },
+        color: {
+            primary: 'bg-primary-700',
+            dark: 'bg-gray-800',
+            gray: 'bg-gray-200 text-gray-800',
+            white: 'bg-white text-gray-800',
+            green: 'bg-green-700',
+            red: 'bg-red-700',
+            alt: 'bg-gray-800',
+            ['alt-dark']: 'bg-gray-800',
         },
     },
 })
@@ -20,15 +48,8 @@ export interface ButtonProps
     startDecorator?: React.ReactNode
     endDecorator?: React.ReactNode
     loading?: boolean
-    color?:
-        | 'primary'
-        | 'dark'
-        | 'gray'
-        | 'white'
-        | 'green'
-        | 'red'
-        | 'alt'
-        | 'alt-dark'
+    size?: ButtonSize
+    color?: ButtonColor
 }
 
 export const Button = ({
@@ -36,7 +57,8 @@ export const Button = ({
     endDecorator,
     children,
     onClick,
-    size,
+    size = 'base',
+    color = 'primary',
     ...props
 }: ButtonProps) => {
     const [loading, setLoading] = useState(false)
@@ -69,15 +91,16 @@ export const Button = ({
         )
     }
 
-    const className =
-        'inline-flex flex-row content-center items-center gap-2 rounded-lg bg-primary-700 px-3 py-2 align-top text-white'
+    console.log(
+        'buttonVariants({ size })',
+        buttonVariants({ size, color }).split(' ').length,
+    )
 
     return (
         <button
             {...props}
             onClick={onClickHandler}
-            className={buttonVariants({ className, size })}
-            // className="inline-flex flex-row content-center items-center gap-2 rounded-lg bg-primary-700 px-3 py-2 align-top text-xs text-white"
+            className={cn(buttonVariants({ size, color }))}
         >
             {startDecorator && (
                 <span className="btn-icon">{startDecorator}</span>

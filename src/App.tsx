@@ -1,5 +1,5 @@
 import { Accessibility, Airplay } from 'lucide-react'
-import { Button } from './components/Button'
+import { ButtonSizes, ButtonColors, Button } from './components/Button'
 
 function App() {
     return (
@@ -11,13 +11,6 @@ function App() {
 }
 
 const ButtonContainer = () => {
-    const sizes: ('xs' | 'sm' | 'base' | 'l' | 'xl')[] = [
-        'xs',
-        'sm',
-        'base',
-        'l',
-        'xl',
-    ]
     const defaultOnClick = () => {
         console.log('test onclick')
     }
@@ -28,36 +21,45 @@ const ButtonContainer = () => {
     const renderDefault = () => {
         return (
             <>
-                {sizes.map((size) => {
-                    return (
-                        <div className="space-x-1">
-                            <Button size={size} onClick={defaultOnClick}>
-                                Default
-                            </Button>
-                            <Button
-                                startDecorator={<Accessibility size="10" />}
-                                size={size}
-                                onClick={defaultOnClick}
-                            >
-                                Default
-                            </Button>
-                            <Button
-                                endDecorator={<Airplay />}
-                                size={size}
-                                onClick={defaultOnClick}
-                            >
-                                Default
-                            </Button>
-                            <Button
-                                startDecorator={<Accessibility size="10" />}
-                                endDecorator={<Airplay />}
-                                size={size}
-                                onClick={defaultOnClick}
-                            >
-                                Default
-                            </Button>
-                        </div>
-                    )
+                {ButtonSizes.map((size) => {
+                    return ButtonColors.map((color) => {
+                        return (
+                            <div className="space-x-1">
+                                <Button
+                                    size={size}
+                                    color={color}
+                                    onClick={defaultOnClick}
+                                >
+                                    Default
+                                </Button>
+                                <Button
+                                    startDecorator={<Accessibility size="10" />}
+                                    size={size}
+                                    color={color}
+                                    onClick={defaultOnClick}
+                                >
+                                    Default
+                                </Button>
+                                <Button
+                                    endDecorator={<Airplay />}
+                                    size={size}
+                                    color={color}
+                                    onClick={defaultOnClick}
+                                >
+                                    Default
+                                </Button>
+                                <Button
+                                    startDecorator={<Accessibility size="10" />}
+                                    endDecorator={<Airplay />}
+                                    size={size}
+                                    color={color}
+                                    onClick={defaultOnClick}
+                                >
+                                    Default
+                                </Button>
+                            </div>
+                        )
+                    })
                 })}
             </>
         )
@@ -65,25 +67,46 @@ const ButtonContainer = () => {
 
     const renderAsync = () => {
         return (
-            <div className="space-x-1">
-                <Button onClick={asynOnClick}>Async</Button>
-                <Button
-                    startDecorator={<Accessibility size="10" />}
-                    onClick={asynOnClick}
-                >
-                    Async
-                </Button>
-                <Button endDecorator={<Airplay />} onClick={asynOnClick}>
-                    Async
-                </Button>
-                <Button
-                    startDecorator={<Accessibility />}
-                    endDecorator={<Airplay />}
-                    onClick={asynOnClick}
-                >
-                    Async
-                </Button>
-            </div>
+            <>
+                {ButtonSizes.map((size) => {
+                    return ButtonColors.map((color) => (
+                        <div className="space-x-1">
+                            <Button
+                                size={size}
+                                color={color}
+                                onClick={asynOnClick}
+                            >
+                                Async
+                            </Button>
+                            <Button
+                                startDecorator={<Accessibility size="10" />}
+                                size={size}
+                                color={color}
+                                onClick={asynOnClick}
+                            >
+                                Async
+                            </Button>
+                            <Button
+                                endDecorator={<Airplay />}
+                                size={size}
+                                color={color}
+                                onClick={asynOnClick}
+                            >
+                                Async
+                            </Button>
+                            <Button
+                                startDecorator={<Accessibility size="10" />}
+                                endDecorator={<Airplay />}
+                                size={size}
+                                color={color}
+                                onClick={asynOnClick}
+                            >
+                                Async
+                            </Button>
+                        </div>
+                    ))
+                })}
+            </>
         )
     }
 
