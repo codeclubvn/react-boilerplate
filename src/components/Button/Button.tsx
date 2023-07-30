@@ -12,8 +12,6 @@ export const ButtonColors = [
     'white',
     'green',
     'red',
-    'alt',
-    'alt-dark',
 ] as const
 type ButtonColor = (typeof ButtonColors)[number]
 
@@ -36,10 +34,48 @@ export const buttonVariants = tv({
             white: 'bg-white text-gray-800',
             green: 'bg-green-700',
             red: 'bg-red-700',
-            alt: 'bg-gray-800',
-            ['alt-dark']: 'bg-gray-800',
+        },
+        outlined: {
+            true: 'border-[1px] bg-transparent',
+            false: '',
+        },
+        disabled: {
+            true: 'cursor-not-allowed opacity-50',
+            false: '',
         },
     },
+    compoundVariants: [
+        {
+            color: 'primary',
+            outlined: true,
+            class: 'text-primary-700 border-primary-700',
+        },
+        {
+            color: 'dark',
+            outlined: true,
+            class: 'text-gray-800 border-gray-800',
+        },
+        {
+            color: 'gray',
+            outlined: true,
+            class: 'text-gray-800 border-gray-200',
+        },
+        {
+            color: 'white',
+            outlined: true,
+            class: 'text-white border-white',
+        },
+        {
+            color: 'green',
+            outlined: true,
+            class: 'text-green-700 border-green-700',
+        },
+        {
+            color: 'red',
+            outlined: true,
+            class: 'text-red-700 border-red-700',
+        },
+    ],
 })
 
 export interface ButtonProps
@@ -50,6 +86,8 @@ export interface ButtonProps
     loading?: boolean
     size?: ButtonSize
     color?: ButtonColor
+    outlined?: boolean
+    disabled?: boolean
 }
 
 export const Button = ({
@@ -59,11 +97,13 @@ export const Button = ({
     onClick,
     size = 'base',
     color = 'primary',
+    outlined = false,
+    disabled: disabledProp = false,
     ...props
 }: ButtonProps) => {
     const [loading, setLoading] = useState(false)
-
     const isAsyncFunction = onClick?.constructor.name === 'AsyncFunction'
+    const disabled = disabledProp || loading
 
     const onClickHandler = isAsyncFunction
         ? (e) => {
@@ -91,16 +131,12 @@ export const Button = ({
         )
     }
 
-    console.log(
-        'buttonVariants({ size })',
-        buttonVariants({ size, color }).split(' ').length,
-    )
-
     return (
         <button
             {...props}
+            disabled={disabled}
             onClick={onClickHandler}
-            className={cn(buttonVariants({ size, color }))}
+            className={cn(buttonVariants({ size, color, outlined, disabled }))}
         >
             {startDecorator && (
                 <span className="btn-icon">{startDecorator}</span>

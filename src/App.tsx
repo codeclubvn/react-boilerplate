@@ -33,7 +33,7 @@ const ButtonContainer = () => {
                                     Default
                                 </Button>
                                 <Button
-                                    startDecorator={<Accessibility size="10" />}
+                                    startDecorator={<Accessibility />}
                                     size={size}
                                     color={color}
                                     onClick={defaultOnClick}
@@ -49,13 +49,114 @@ const ButtonContainer = () => {
                                     Default
                                 </Button>
                                 <Button
-                                    startDecorator={<Accessibility size="10" />}
+                                    startDecorator={<Accessibility />}
                                     endDecorator={<Airplay />}
                                     size={size}
                                     color={color}
                                     onClick={defaultOnClick}
                                 >
                                     Default
+                                </Button>
+                            </div>
+                        )
+                    })
+                })}
+            </>
+        )
+    }
+    const renderDisabled = () => {
+        return (
+            <>
+                {ButtonSizes.map((size) => {
+                    return ButtonColors.map((color) => {
+                        return (
+                            <div className="space-x-1">
+                                <Button
+                                    disabled
+                                    size={size}
+                                    color={color}
+                                    onClick={defaultOnClick}
+                                >
+                                    Default
+                                </Button>
+                                <Button
+                                    disabled
+                                    startDecorator={<Accessibility />}
+                                    size={size}
+                                    color={color}
+                                    onClick={defaultOnClick}
+                                >
+                                    Default
+                                </Button>
+                                <Button
+                                    disabled
+                                    endDecorator={<Airplay />}
+                                    size={size}
+                                    color={color}
+                                    onClick={defaultOnClick}
+                                >
+                                    Default
+                                </Button>
+                                <Button
+                                    disabled
+                                    startDecorator={<Accessibility />}
+                                    endDecorator={<Airplay />}
+                                    size={size}
+                                    color={color}
+                                    onClick={defaultOnClick}
+                                >
+                                    Default
+                                </Button>
+                            </div>
+                        )
+                    })
+                })}
+            </>
+        )
+    }
+
+    const renderDefaultOutlined = () => {
+        return (
+            <>
+                {ButtonSizes.map((size) => {
+                    return ButtonColors.map((color) => {
+                        return (
+                            <div className="space-x-1">
+                                <Button
+                                    outlined
+                                    size={size}
+                                    color={color}
+                                    onClick={defaultOnClick}
+                                >
+                                    Outlined
+                                </Button>
+                                <Button
+                                    outlined
+                                    startDecorator={<Accessibility />}
+                                    size={size}
+                                    color={color}
+                                    onClick={defaultOnClick}
+                                >
+                                    Outlined
+                                </Button>
+                                <Button
+                                    outlined
+                                    endDecorator={<Airplay />}
+                                    size={size}
+                                    color={color}
+                                    onClick={defaultOnClick}
+                                >
+                                    Outlined
+                                </Button>
+                                <Button
+                                    outlined
+                                    startDecorator={<Accessibility />}
+                                    endDecorator={<Airplay />}
+                                    size={size}
+                                    color={color}
+                                    onClick={defaultOnClick}
+                                >
+                                    Outlined
                                 </Button>
                             </div>
                         )
@@ -79,7 +180,7 @@ const ButtonContainer = () => {
                                 Async
                             </Button>
                             <Button
-                                startDecorator={<Accessibility size="10" />}
+                                startDecorator={<Accessibility />}
                                 size={size}
                                 color={color}
                                 onClick={asynOnClick}
@@ -95,7 +196,7 @@ const ButtonContainer = () => {
                                 Async
                             </Button>
                             <Button
-                                startDecorator={<Accessibility size="10" />}
+                                startDecorator={<Accessibility />}
                                 endDecorator={<Airplay />}
                                 size={size}
                                 color={color}
@@ -112,6 +213,8 @@ const ButtonContainer = () => {
 
     return (
         <>
+            {renderDisabled()}
+            {renderDefaultOutlined()}
             {renderDefault()}
             {renderAsync()}
         </>
