@@ -99,17 +99,19 @@ export const Button = ({
     color = 'primary',
     outlined = false,
     disabled: disabledProp = false,
+    loading: loadingProp = false,
     ...props
 }: ButtonProps) => {
-    const [loading, setLoading] = useState(false)
+    const [fetching, setFetching] = useState(false)
     const isAsyncFunction = onClick?.constructor.name === 'AsyncFunction'
-    const disabled = disabledProp || loading || !onClick
+    const disabled = disabledProp || fetching || !onClick
+    const loading = fetching || loadingProp
 
     const onClickHandler = isAsyncFunction
         ? (e) => {
-              setLoading(true)
+              setFetching(true)
               Promise.all([onClick(e), wait()]).then(() => {
-                  setLoading(false)
+                  setFetching(false)
               })
           }
         : onClick
