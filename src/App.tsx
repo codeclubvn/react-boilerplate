@@ -1,5 +1,6 @@
 import { Accessibility, Airplay } from 'lucide-react'
 import { ButtonSizes, ButtonColors, Button } from './components/Button'
+import { Input } from './components'
 
 function App() {
     return (
@@ -213,6 +214,7 @@ const ButtonContainer = () => {
 
     return (
         <>
+            <Input />
             {renderDisabled()}
             {renderDefaultOutlined()}
             {renderDefault()}
