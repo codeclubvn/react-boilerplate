@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { cn, wait } from '../../utils'
+import { wait } from '../../utils'
 import { VariantProps, tv } from 'tailwind-variants'
 
 export const ButtonSizes = ['xs', 'sm', 'base', 'lg', 'xl'] as const
@@ -136,7 +136,7 @@ export const Button = ({
             {...props}
             disabled={disabled}
             onClick={onClickHandler}
-            className={cn(buttonVariants({ size, color, outlined, disabled }))}
+            className={buttonVariants({ size, color, outlined, disabled })}
         >
             {startDecorator && (
                 <span className="btn-icon">{startDecorator}</span>
