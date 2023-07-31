@@ -42,12 +42,14 @@ export const Alert = ({
         <div className={alertVariants({ color })}>
             <span className="btn-icon rounded-full">{startDecorator}</span>
             <span>{msg}</span>
-            <span
-                onClick={onClose}
-                className="btn-icon ml-auto cursor-pointer rounded-full pl-2"
-            >
-                <XCircle />
-            </span>
+            {onClose && (
+                <span
+                    onClick={onClose}
+                    className="btn-icon ml-auto cursor-pointer rounded-full pl-2"
+                >
+                    <XCircle />
+                </span>
+            )}
         </div>
     )
 }
