@@ -34,7 +34,7 @@ const calculateDurationFromMessage = (
     )
 }
 
-export function toast(props: ToastProps) {
+export function toast(_props: ToastProps) {
     const {
         onClose,
         title,
@@ -62,11 +62,11 @@ export function toast(props: ToastProps) {
     )
 }
 
-toast.success = (props: Omit<ToastProps, 'color'> = {}) => {
+toast.success = (_props: Omit<ToastProps, 'color'> = {}) => {
     toast({ color: 'success', ...props })
 }
 
-toast.danger = (props: Omit<ToastProps, 'color'> = {}) => {
+toast.danger = (_props: Omit<ToastProps, 'color'> = {}) => {
     toast({ color: 'danger', ...props })
 }
 

@@ -1,29 +1,7 @@
-import { Button } from './components/Button'
-import { Alert, Toaster, toast } from './components'
+import { routes } from './routes'
 
 function App() {
-    return (
-        <div className="flex flex-col items-start space-y-4 p-2">
-            <div>App</div>
-            <Alert />
-            <Alert color="danger" />
-            <Button
-                onClick={() => {
-                    toast.success()
-                }}
-            >
-                Toast Ngon
-            </Button>
-            <Button
-                onClick={() => {
-                    toast.danger()
-                }}
-            >
-                Toast Ngu
-            </Button>
-            <Toaster />
-        </div>
-    )
+    return <>{routes}</>
 }
 
 export default App
