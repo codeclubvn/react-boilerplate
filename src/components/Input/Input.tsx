@@ -70,7 +70,7 @@ export interface InputProps
     endDecoratorClassName?: string
 }
 
-export const Input = (props) => {
+export const Input = (_props) => {
     const {
         wrapperClassName,
         startDecorator,
